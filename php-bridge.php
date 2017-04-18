@@ -132,7 +132,7 @@ $localXdebugHost = '0.0.0.0'; // 127.0.0.1 created problems on Windows. Use fire
 $localXdebugPort = null;
 
 foreach($arguments as &$argument) {
-    if (file_exists($argument) && false !== strpos($argument, '\\')) {
+    if (file_exists($argument) && (false !== strpos($argument, '\\') or false !== strpos($argument, '/'))) {
         $argument = mapPath($argument);
     } elseif (preg_match('/^-dxdebug\.remote_port=(\d+)$/', $argument, $matches)) {
         $xdebugPort = $matches[1];
